@@ -1,0 +1,12 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": { "text": "Climate Change Around The World" },
+    "data": {
+        "url": ""
+    },
+    "mark": "",
+    "encoding": {
+        "y": { "field": "city", "type": "nominal" },
+        "x": { "field": "daily_cost", "type": "quantitative" }
+    }
+}
