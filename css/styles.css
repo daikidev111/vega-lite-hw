@@ -8,5 +8,5 @@
 }
 
 .vega-embed summary {
-	top: 35px
+	top: 35px !important;
 }
