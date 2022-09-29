@@ -10,6 +10,27 @@
   },
   "layer":[
     {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+        "format": {"type": "topojson", "feature": "oceans"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightskyblue"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/daikidev111/vega-lite-hw/main/js/ne_110m.json",
+      "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+    },
+    {
+      "data": {
+      "url": "https://raw.githubusercontent.com/daikidev111/vega-lite-hw/main/js/ne_110m.json",
+      "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+    },
+    {
       "transform": [
         {"calculate": "'Unemployment data is not available in the country: ' + datum.properties.NAME", "as": "unavailable"}
       ],
@@ -38,8 +59,11 @@
       "encoding": {
         "color": {
           "field": "2021-unemployment",
-          "type": "quantitative",
-          "scale": {"type": "log"},
+          "scale": {
+            "type": "threshold",
+            "domain": [5, 10, 15, 20],
+            "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#c4490c","#a63603"]
+          },
           "title": "Unemployment Rate"
         },
         "tooltip": [
