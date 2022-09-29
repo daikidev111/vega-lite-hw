@@ -8,29 +8,44 @@
     "url": "https://raw.githubusercontent.com/daikidev111/vega-lite-hw/main/js/ne_110m.json",
     "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
   },
-  "transform": [
+  "layer":[
     {
-      "lookup": "properties.NAME",
-      "from": {
-        "data": {
-          "url": "https://raw.githubusercontent.com/daikidev111/vega-lite-hw/main/cleaned-data/unemployment.csv"
-        },
-        "key": "Country Name",
-        "fields": ["most_recent_year"]
+      "transform": [
+        {"calculate": "'Data is not available in ' + datum.properties.NAME", "as": "unavailable"}
+      ],
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+      "encoding": {
+        "tooltip": {
+          "field": "unavailable"
+        }
       }
     },
-    {"calculate": "datum.most_recent_year", "as": "2021-unemployment"}
-  ],
-  "mark": {"type": "geoshape"},
-  "encoding": {
-    "color": {
-      "field": "2021-unemployment",
-      "type": "quantitative",
-      "scale": {"type": "log"}
-    },
-    "tooltip": [
-      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-      {"field": "most_recent_year", "type": "quantitative"}
-    ]
-  }
+    {
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/daikidev111/vega-lite-hw/main/cleaned-data/unemployment.csv"
+            },
+            "key": "Country Name",
+            "fields": ["most_recent_year"]
+          }
+        },
+        {"calculate": "datum.most_recent_year", "as": "2021-unemployment"}
+      ],
+      "mark": {"type": "geoshape"},
+      "encoding": {
+        "color": {
+          "field": "2021-unemployment",
+          "type": "quantitative",
+          "scale": {"type": "log"}
+        },
+        "tooltip": [
+          {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+          {"field": "most_recent_year", "type": "quantitative"}
+        ]
+      }
+    }
+  ]
 }
