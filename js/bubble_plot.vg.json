@@ -6,6 +6,13 @@
     "data": {
       "url": "https://raw.githubusercontent.com/daikidev111/vega-lite-hw/main/cleaned-data/economics.csv"
     }, 
+    "params": [
+      {
+        "name": "class_highlight",
+        "select": {"type": "point", "fields": ["Class"]},
+        "bind": "legend"
+      }
+    ],
     "transform": [
       {"filter": "datum['2019_GDP'] > 0"},
       {"filter": "datum['2019_UNEMP'] > 0"}
@@ -21,9 +28,27 @@
       "y": {
         "field": "2019_GDP",
         "type": "quantitative",
-        "title": "GDP change in 2019",
+        "title": "GDP per capita in 2019",
         "axis": {"tickCount": 6},
-        "scale": {"type": "linear", "domain": [0, 10]}
+        "scale": {"type": "linear", "domain": [0, 117300]}
+      },
+      "color": {
+        "field": "Class",
+        "type": "nominal",
+        "scale": {
+          "domain": [
+            "High Income",
+            "Upper Middle Income",
+            "Lower Middle Income",
+            "Low Income"
+          ],
+          "range": [
+            "#e41a1c",
+            "#984ea3",
+            "#ff7f00",
+            "#a6cee3"
+          ]
+        }
       }
     },
     "layer": [
@@ -35,12 +60,15 @@
             "type": "quantitative",
             "scale": {
               "type": "threshold",
-              "domain": [1, 5000, 10000, 30000, 50000, 70000],
-              "range": [1, 1000]
+              "domain": [1000, 5000, 10000, 30000, 50000, 70000],
+              "range": [100, 250, 500, 1000, 1500, 2000]
             },
             "legend": {"format": ".1f"}
           },
-          "opacity": {"value": 0.6},
+          "opacity": {
+            "condition": {"param": "class_highlight", "value": 0.6},
+            "value": 0.2
+          },
           "tooltip": [
             {"field": "country", "type": "nominal"},
             {
@@ -55,27 +83,6 @@
               "format": ","
             }
           ]
-        }
-      },
-      {
-        "mark": {
-          "type": "text",
-          "align": "right",
-          "baseline": "top",
-          "dx": -10,
-          "fontSize": 12,
-          "fontStyle": "bold"
-        },
-        "encoding": {
-          "text": {"field": "country", "type": "nominal"},
-          "color": {"value": "red"},
-          "opacity": {
-            "condition": {
-              "test": "datum['country'] == 'France' || datum['country'] == 'Ukraine' || datum['country'] == 'Germany' || datum['country'] == 'Portugal'|| datum['country'] == 'Switzerland'|| datum['country'] == 'Luxembourg'|| datum['country'] == 'Norway'|| datum['country'] == 'Ireland'",
-              "value": 1
-            },
-            "value": 0
-          }
         }
       }
     ]
