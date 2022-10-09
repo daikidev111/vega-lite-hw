@@ -12,16 +12,14 @@
 <body>
 
 <div id="bubble_plot"></div>
-<div></div>
 <div id="choropleth_map_unemployment_rate"></div>
 
 <script type="text/javascript">
   var spec = "js/bubble_plot.vg.json";
   vegaEmbed('#bubble_plot', spec).then(function(result) {
   }).catch(console.error);
-
   var spec2 = "js/choropleth_map_unemployment_rate.vg.json";
-  vegaEmbed('#choropleth_map_unemployment_rate', spec2).then(function(result) {
+  vegaembed('#choropleth_map_unemployment_rate', spec).then(function(result) {
   }).catch(console.error);
 </script>
 
