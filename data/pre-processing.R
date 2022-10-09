@@ -22,6 +22,7 @@ rm(list=ls())
 gdp_df <- read_excel("gdp_data.xls")
 unemp_df <- read_excel("unemployment.xls")
 gni_df <- read.csv("GNI.csv")
+gdp_df <- read.csv("GDP_per_capita.csv")
 
 #https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?view=chart
 path_to_write <- "~/Desktop/vega-lite-hw/cleaned-data/"
@@ -46,7 +47,7 @@ gni_df <- gni_df %>% na.omit(gni_df)
 colnames(gdp_df)[1] = "country"
 colnames(unemp_df)[1] = "country"
 colnames(gni_df)[1] = "country"
-gdp_df = select(gdp_df, -c(2:40))
+#gdp_df = select(gdp_df, -c(2:40))
 unemp_df = select(unemp_df, -c(2:40))
 gdp_df = select(gdp_df, -c(3:10))
 unemp_df = select(unemp_df, -c(3:10))
