@@ -8,16 +8,12 @@
   
   <!-- css file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
-
-
 </head>
 <body>
-  
-<div id="bubble_plot_class"></div>
-
+<div id="choropleth_map_unemployment_rate"></div>
 <script type="text/javascript">
-  var spec = "js/bubble_plot.vg.json";
-  vegaembed("#bubble_plot_class", spec).then(function(result) {
+  var spec = "bubble_plot.vg.json";
+  vegaembed('#choropleth_map_unemployment_rate', spec).then(function(result) {
   }).catch(console.error);
 </script>
 
