@@ -1,0 +1,96 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 600,
+    "title": "Tourism in Europe against GDP and Cost of Living in 2019",
+    "data": {
+      "url": "https://raw.githubusercontent.com/daikidev111/vega-lite-hw/main/cleaned-data/economics.csv"
+    },
+    "params": [
+      {
+        "name": "Tourist_Above",
+        "value": 0,
+        "bind": {
+          "input": "range",
+          "min": 0,
+          "max": 100000000,
+          "step": 1000000,
+          "name": "Minimum Tourists: "
+        }
+      }
+    ],
+    "transform": [
+      {"filter": "datum['GDP_2019'] > 0"},
+      {"filter": "datum['Cost of Living Index'] > 0"},
+      {"filter": "datum['Number of Tourists'] > Tourist_Above"}
+    ],
+    "encoding": {
+      "x": {
+        "field": "2019_UNEMP",
+        "type": "quantitative",
+        "title": "Unemployment rate in 2019",
+        "axis": {"tickCount": 7},
+        "scale": {"type": "linear", "domain": [1, 150]}
+      },
+      "y": {
+        "field": "2019_GDP",
+        "type": "quantitative",
+        "title": "GDP change in 2019",
+        "axis": {"tickCount": 6},
+        "scale": {"type": "linear", "domain": [1, 130000]}
+      }
+    },
+    "layer": [
+      {
+        "mark": "circle",
+        "encoding": {
+          "size": {
+            "field": "2019_GNI",
+            "type": "quantitative",
+            "scale": {
+              "type": "threshold",
+              "domain": [1000000, 10000000, 50000000, 100000000, 200000000],
+              "range": [1, 5000, 10000, 20000, 40000, 800000]
+            },
+            "legend": {"format": ".1f"}
+          },
+          "opacity": {"value": 0.6},
+          "tooltip": [
+            {"field": "country", "type": "nominal"},
+            {
+              "field": "2019_GDP",
+              "type": "quantitative",
+              "format": ","
+            },
+            {"field": "2019_UNEMP", "type": "quantitative", "format": ","},
+            {
+              "field": "2019_GNI",
+              "type": "quantitative",
+              "format": ","
+            }
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": -12,
+          "fontSize": 11.5,
+          "fontStyle": "italic"
+        },
+        "encoding": {
+          "text": {"field": "country", "type": "nominal"},
+          "color": {"value": "black"},
+          "opacity": {
+            "condition": {
+              "test": "datum['Country'] == 'France' || datum['Country'] == 'Ukraine' || datum['Country'] == 'Germany' || datum['Country'] == 'Portugal'|| datum['Country'] == 'Switzerland'|| datum['Country'] == 'Luxembourg'|| datum['Country'] == 'Norway'|| datum['Country'] == 'Ireland'",
+              "value": 1
+            },
+            "value": 0
+          }
+        }
+      }
+    ]
+  }
