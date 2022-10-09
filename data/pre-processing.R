@@ -67,11 +67,15 @@ for (i in 1:nrow(df)) {
     df$Class[i] = "Upper Middle Income"
   }
 }
+
+#change the datatype
+df$`2019_GDP` = as.numeric(df$`2019_GDP`)
+df$`2019_UNEMP` = as.numeric(df$`2019_UNEMP`)
+
 for (i in 1:nrow(df)){
-  df$`2019_GDP`[i] = as.numeric(df$`2019_GDP`[i])
-  df$`2019_GDP`[i] = round(as.numeric(df$`2019_GDP`[i]), 2)
-  df$`2019_UNEMP`[i] = round(as.numeric(df$`2019_UNEMP`[i]), 2)
-  df$`2019_GNI`[i] =round(as.numeric(df$`2019_GNI`[i]), 2)
+  df$`2019_GDP`[i] = round(df$`2019_GDP`[i], 2)
+  df$`2019_UNEMP`[i] = round(df$`2019_UNEMP`[i], 2)
+  df$`2019_GNI`[i] = round(df$`2019_GNI`[i], 2)
 }
 
 
