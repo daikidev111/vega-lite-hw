@@ -2,17 +2,24 @@
 <html>
 <head>
   <!-- import vega & vega-lite (does not have to be from cdn) -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-  
+   -->
+   <script src="https://cdn.jsdelivr.net/npm/vega@5.4.0/build/vega.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.3.0/build/vega-lite.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/vega-embed@4.2.0/build/vega-embed.js"></script>
   <!-- css file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+
 </head>
 <body>
+  
 <div id="choropleth_map_unemployment_rate"></div>
+
 <script type="text/javascript">
-  var spec = "bubble_plot.vg.json";
+  var spec = "js/choropleth_map_unemployment_rate.vg.json";
   vegaembed('#choropleth_map_unemployment_rate', spec).then(function(result) {
   }).catch(console.error);
 </script>
