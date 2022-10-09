@@ -164,7 +164,7 @@
         "fontStyle": "italic"
       },
       "encoding": {
-        "text": {"field": "text"},
+        "text": {"field": "text"}
       }
     }
   ],
